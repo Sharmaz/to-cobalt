@@ -5,7 +5,21 @@ export default {
     './src/**/*.{js,ts,jsx,tsx}'
   ],
   theme: {
-    extend: {},
+    extend: {
+      keyframes: {
+        'cursor-pulse': {
+          '0%, 100%': {
+            opacity: 1,
+          },
+          '100%': {
+            opacity: 0,
+          }
+        },
+      },
+      animation: {
+        'cursor-pulse': 'cursor-pulse 2s ease-in-out infinite',
+      }
+    },
   },
   plugins: [],
 }
