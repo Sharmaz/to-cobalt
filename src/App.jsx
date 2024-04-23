@@ -1,33 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState, useRef } from 'react'
+
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [username, setUsername] = useState('');
+  const usernameRef = useRef();
+  function handleInput(event) {
+    const regEx = /([A-Z]|[a-z]|\s){1}/;
 
+    if (event.key.match(regEx) && event.key.length < 2) {
+      setUsername([...username, event.key]);
+    }
+    if (event.key === 'Backspace') {
+      let lastUsername = [];
+      lastUsername.push(username);
+      lastUsername = lastUsername.flat();
+      lastUsername.pop();
+      setUsername(lastUsername);
+    }
+  }
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <h1>User Login</h1>
+      <div className="form">
+        <div
+          className="input input-text"
+          ref={usernameRef}
+          onClick={() => usernameRef.current.focus()}
+          onKeyDown={(event) => handleInput(event)}
+          tabIndex="0"
+        >
+          {username}
+        </div>
+        <div className="input input-password"></div>
+        <button>Sign In</button>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <form action="">
+        <input type="text" name="" id="" placeholder='Type Username Here'/>
+        <input type="password" name="" id="" placeholder='Type Password Here'/>
+      </form>
     </>
   )
 }
