@@ -23,7 +23,9 @@ const TextInput = () => {
   return (
     <div className="input-text-container my-2">
       <div
-        className="input input-text flex items-center p-2"
+        className={`input input-text flex items-center p-2 relative
+          ${isFocused || username.length > 0 ? '' : String.raw`after:content-['Type\00a0Username\00a0Here']`}
+          after:absolute after:top-2 after:left-2 after:h-[40px] after:w-[200px] after:text-slate-500`}
         ref={usernameRef}
         onClick={() => usernameRef.current.focus()}
         onKeyDown={(event) => handleInput(event)}
