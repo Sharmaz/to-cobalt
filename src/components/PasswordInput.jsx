@@ -36,7 +36,9 @@ const PasswordInput = () => {
   return (
     <div className="password-container my-2 flex">
       <div
-        className={`${isShow? 'flex': 'hidden'} input input-password w-[160px] items-center p-2`}
+        className={`${isShow? 'flex': 'hidden'} input input-password w-[200px] items-center p-2 relative
+          ${isFocused || password.length > 0 ? '' : String.raw`after:content-['Type\00a0Password\00a0Here']`}
+          after:absolute after:top-2 after:left-2 after:h-[40px] after:w-[200px] after:text-slate-500`}
         ref={passwordRef}
         onClick={() => passwordRef.current.focus()}
         onKeyDown={(event) => handleInput(event)}
@@ -49,7 +51,9 @@ const PasswordInput = () => {
         <div className={`cursor animate-cursor-pulse ${isFocused ? 'block' : 'hidden'}`}></div>
       </div>
       <div
-        className={`${isShow? 'hidden': 'flex'} input input-password w-[160px] items-center p-2`}
+        className={`${isShow? 'hidden': 'flex'} input input-password w-[200px] items-center p-2 relative
+          ${isFocused || password.length > 0 ? '' : String.raw`after:content-['Type\00a0Password\00a0Here']`}
+          after:absolute after:top-2 after:left-2 after:h-[40px] after:w-[200px] after:text-slate-500`}
         ref={passwordRef}
         onClick={() => passwordRef.current.focus()}
         onKeyDown={(event) => handleInput(event)}
