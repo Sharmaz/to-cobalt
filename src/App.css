@@ -1,7 +1,10 @@
+html, body {
+  background-color: #282A36;
+}
 .input {
-  background-color: #fff;
-  border: 1px solid gray;
+  border: 1px solid #F8F8F2;
   border-radius: 8px;
+  color: #F8F8F2;
   height: 40px;
   width: 200px;
 }
@@ -13,5 +16,5 @@
 .cursor {
   height: 16px;
   width: 2px;
-  background-color: black;
+  background-color: #F8F8F2;
 }
