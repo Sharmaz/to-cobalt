@@ -60,7 +60,7 @@ function App() {
 
   return (
     <div className="flex flex-col items-center w-full justify-center h-[100vh]">
-      <h1 className="text-2xl py-4" >User Login</h1>
+      <h1 className="text-2xl py-4 text-[#F8F8F2]" >User Login</h1>
       <div className="">
         <TextInput
           username={username}
@@ -74,7 +74,7 @@ function App() {
           hidePassword={hidePassword}
         />
         <button
-          className="border-[1px] border-black rounded-lg py-1 px-4"
+          className="border-[1px] border-[#F8F8F2] rounded-lg py-1 px-4 text-[#F8F8F2]"
           onClick={() => sendPayload()}
         >
           Sign In

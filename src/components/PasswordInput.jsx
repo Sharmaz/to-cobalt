@@ -9,7 +9,7 @@ const PasswordInput = ({
   handlePasswordInput,
   handleHiddenPasswordInput,
   hidePassword}) => {
-  const [isShow, setIsShow] = useState(true);
+  const [isShow, setIsShow] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const passwordRef = useRef();
 
