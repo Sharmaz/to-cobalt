@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react'
+import { PropTypes } from 'prop-types';
 import IconHide from '../assets/hide.svg';
 import IconShow from '../assets/show.svg';
 
@@ -51,7 +52,15 @@ const PasswordInput = ({
         <img src={isShow ? IconHide : IconShow} width={24} height={24} />
       </button>
     </div>
-  )
+  );
+}
+
+PasswordInput.propTypes = {
+  password: PropTypes.string,
+  hiddenPassword: PropTypes.string,
+  handlePasswordInput: PropTypes.function,
+  handleHiddenPasswordInput: PropTypes.function,
+  hidePassword: PropTypes.function
 }
 
 export default PasswordInput;

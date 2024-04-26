@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react'
+import { PropTypes } from 'prop-types';
 
 
 const TextInput = ({username, handleTextInput}) => {
@@ -23,6 +24,11 @@ const TextInput = ({username, handleTextInput}) => {
       </div>
     </div>
   );
+}
+
+TextInput.propTypes = {
+  username: PropTypes.string,
+  handleTextInput: PropTypes.function
 }
 
 export default TextInput;
