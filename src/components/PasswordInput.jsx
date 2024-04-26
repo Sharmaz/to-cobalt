@@ -1,37 +1,17 @@
 import { useState, useRef } from 'react'
+import { PropTypes } from 'prop-types';
 import IconHide from '../assets/hide.svg';
 import IconShow from '../assets/show.svg';
 
-const PasswordInput = () => {
+const PasswordInput = ({
+  password,
+  hiddenPassword,
+  handlePasswordInput,
+  handleHiddenPasswordInput,
+  hidePassword}) => {
   const [isShow, setIsShow] = useState(true);
-  const [password, setPassword] = useState('');
-  const [hiddenPassword, setHiddenPassword] = useState('');
   const [isFocused, setIsFocused] = useState(false);
   const passwordRef = useRef();
-
-  function handleInput(event) {
-
-    if (event.key.length < 2) {
-      setPassword([...password, event.key]);
-    }
-    if (event.key === 'Backspace') {
-      let lastPassword = [];
-      lastPassword.push(password);
-      lastPassword = lastPassword.flat();
-      lastPassword.pop();
-      setPassword(lastPassword);
-    }
-  }
-
-  function handlePasswordInput(event) {
-    if (event.key.length < 2) {
-      setHiddenPassword('*'.repeat(password.length - 1) + event.key);
-      setTimeout(() => {setHiddenPassword('*'.repeat(password.length))}, 150);
-    }
-    if (event.key === 'Backspace') {
-      setHiddenPassword('*'.repeat(password.length));
-    }
-  }
 
   return (
     <div className="password-container my-2 flex">
@@ -41,8 +21,8 @@ const PasswordInput = () => {
           after:absolute after:top-2 after:left-2 after:h-[40px] after:w-[200px] after:text-slate-500`}
         ref={passwordRef}
         onClick={() => passwordRef.current.focus()}
-        onKeyDown={(event) => handleInput(event)}
-        onKeyUp={() => setHiddenPassword('*'.repeat(password.length))}
+        onKeyDown={(event) => handlePasswordInput(event)}
+        onKeyUp={() => hidePassword()}
         tabIndex="0"
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
@@ -56,8 +36,8 @@ const PasswordInput = () => {
           after:absolute after:top-2 after:left-2 after:h-[40px] after:w-[200px] after:text-slate-500`}
         ref={passwordRef}
         onClick={() => passwordRef.current.focus()}
-        onKeyDown={(event) => handleInput(event)}
-        onKeyUp={(event) => handlePasswordInput(event)}
+        onKeyDown={(event) => handlePasswordInput(event)}
+        onKeyUp={(event) => handleHiddenPasswordInput(event)}
         tabIndex="0"
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
@@ -72,7 +52,15 @@ const PasswordInput = () => {
         <img src={isShow ? IconHide : IconShow} width={24} height={24} />
       </button>
     </div>
-  )
+  );
+}
+
+PasswordInput.propTypes = {
+  password: PropTypes.string,
+  hiddenPassword: PropTypes.string,
+  handlePasswordInput: PropTypes.function,
+  handleHiddenPasswordInput: PropTypes.function,
+  hidePassword: PropTypes.function
 }
 
 export default PasswordInput;
