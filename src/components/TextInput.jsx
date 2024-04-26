@@ -1,24 +1,9 @@
 import { useState, useRef } from 'react'
 
 
-const TextInput = () => {
-  const [username, setUsername] = useState('');
+const TextInput = ({username, handleTextInput}) => {
   const [isFocused, setIsFocused] = useState(false);
   const usernameRef = useRef();
-  function handleInput(event) {
-    const regEx = /([A-Z]|[a-z]|\s){1}/;
-
-    if (event.key.match(regEx) && event.key.length < 2) {
-      setUsername([...username, event.key]);
-    }
-    if (event.key === 'Backspace') {
-      let lastUsername = [];
-      lastUsername.push(username);
-      lastUsername = lastUsername.flat();
-      lastUsername.pop();
-      setUsername(lastUsername);
-    }
-  }
 
   return (
     <div className="input-text-container my-2">
@@ -28,7 +13,7 @@ const TextInput = () => {
           after:absolute after:top-2 after:left-2 after:h-[40px] after:w-[200px] after:text-slate-500`}
         ref={usernameRef}
         onClick={() => usernameRef.current.focus()}
-        onKeyDown={(event) => handleInput(event)}
+        onKeyDown={(event) => handleTextInput(event)}
         tabIndex="0"
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
